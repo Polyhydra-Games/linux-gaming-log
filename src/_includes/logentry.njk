@@ -1,0 +1,7 @@
+<article class="card">
+  <h3><a href="{{ ('/log/' + e.slug + '/') | url }}">{{ e.title }}</a></h3>
+  <p class="meta"><time datetime="{{ e.date }}">{{ e.date }}</time>
+    {% for m in e.machines %}<span class="chip">{{ lgl.nameOf[m] or m }}</span>{% endfor %}
+    {% for g in e.games %}<a class="chip" href="{{ ('/games/' + g + '/') | url }}">{{ lgl.gameTitle[g] or g }}</a>{% endfor %}
+  </p>
+</article>

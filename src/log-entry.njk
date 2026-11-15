@@ -1,0 +1,24 @@
+---
+layout: base.njk
+pagination:
+  data: lgl.log
+  size: 1
+  alias: e
+permalink: "/log/{{ e.slug }}/"
+eleventyComputed:
+  title: "{{ e.title }}"
+---
+<h1>{{ e.title }}</h1>
+<p class="meta"><time datetime="{{ e.date }}">{{ e.date }}</time>
+  {% for m in e.machines %}<span class="chip">{{ lgl.nameOf[m] or m }}</span>{% endfor %}
+  {% for g in e.games %}<a class="chip" href="{{ ('/games/' + g + '/') | url }}">{{ lgl.gameTitle[g] or g }}</a>{% endfor %}
+  {% for t in e.tags %}<span class="chip tag">#{{ t }}</span>{% endfor %}
+</p>
+<h2>What we did</h2>
+<ul>{% for x in e.what_we_did | list %}<li>{{ x | mdInline | safe }}</li>{% endfor %}</ul>
+<h2>What worked</h2>
+<ul>{% for x in e.what_worked | list %}<li>{{ x | mdInline | safe }}</li>{% endfor %}</ul>
+{% if e.what_failed | nonempty %}<h2>What failed</h2>
+<ul>{% for x in e.what_failed | list %}<li>{{ x | mdInline | safe }}</li>{% endfor %}</ul>{% else %}<p class="muted">Nothing failed.</p>{% endif %}
+{% if e.body %}<h2>Notes</h2>{{ e.body | md | safe }}{% endif %}
+{% if e.links | nonempty %}<h2>Links</h2><ul>{% for l in e.links %}<li><a href="{{ l.url }}">{{ l.title }}</a></li>{% endfor %}</ul>{% endif %}

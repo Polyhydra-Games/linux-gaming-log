@@ -1,0 +1,26 @@
+---
+layout: base.njk
+pagination:
+  data: lgl.games
+  size: 1
+  alias: g
+permalink: "/games/{{ g.slug }}/"
+eleventyComputed:
+  title: "{{ g.title }}"
+---
+<h1>{{ g.title }}</h1>
+<dl class="facts">
+  <dt>Slug</dt><dd><code>{{ g.slug }}</code> ({{ g.store }})</dd>
+  <dt>Native Linux installer</dt><dd>{{ g.linux_installer_native }}</dd>
+  <dt>How it runs</dt><dd>{{ g.how_it_runs }}</dd>
+  <dt>Backup location</dt><dd><code>{{ g.backup_location }}</code></dd>
+  <dt>Rating</dt><dd>{{ g.rating or 'unrated' }}</dd>
+  <dt>Status</dt><dd>{{ g.status }}</dd>
+</dl>
+{{ g.body | md | safe }}
+<h2>Related tips</h2>
+{% if g.tips | length %}{% for t in g.tips %}<p><a href="{{ ('/tips/' + t.id + '/') | url }}">{{ t.title }}</a> <span class="chip status-{{ t.status }}">{{ t.status }}</span></p>{% endfor %}
+{% else %}<p class="muted">No tips tagged with this game yet.</p>{% endif %}
+<h2>Related log entries</h2>
+{% if g.log | length %}{% for e in g.log %}{% include "logentry.njk" %}{% endfor %}
+{% else %}<p class="muted">No log entries yet.</p>{% endif %}

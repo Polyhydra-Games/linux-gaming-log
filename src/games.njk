@@ -1,0 +1,15 @@
+---
+layout: base.njk
+title: Games
+permalink: /games/
+---
+<h1>Games</h1>
+<p class="lede">Only games that have been worked on get a page; this is not a catalog of the whole library.</p>
+<table>
+  <thead><tr><th>Game</th><th>Native Linux</th><th>How it runs</th><th>Status</th></tr></thead>
+  <tbody>
+  {% for g in lgl.games %}
+    <tr><td><a href="{{ ('/games/' + g.slug + '/') | url }}">{{ g.title }}</a></td><td>{{ g.linux_installer_native }}</td><td>{{ g.how_it_runs }}</td><td>{{ g.status }}</td></tr>
+  {% endfor %}
+  </tbody>
+</table>

@@ -1,0 +1,27 @@
+{
+  "$schema": "http://json-schema.org/draft-07/schema#",
+  "title": "tip frontmatter",
+  "type": "object",
+  "required": ["id", "title", "category", "games", "machines", "status", "source", "date_verified"],
+  "additionalProperties": false,
+  "properties": {
+    "id": { "type": "string", "pattern": "^[a-z0-9]+(-[a-z0-9]+)*$" },
+    "title": { "type": "string", "minLength": 1 },
+    "category": {
+      "type": "string",
+      "enum": ["backup", "install", "wine", "proton", "native", "controller", "performance", "nas", "tools", "shell", "other"]
+    },
+    "games": { "type": "array", "items": { "type": "string", "minLength": 1 }, "uniqueItems": true },
+    "machines": { "type": "array", "items": { "type": "string", "minLength": 1 }, "uniqueItems": true },
+    "distro": {
+      "oneOf": [
+        { "type": "string" },
+        { "type": "array", "items": { "type": "string" } }
+      ]
+    },
+    "status": { "type": "string", "enum": ["works", "partial", "broken"] },
+    "source": { "type": "string", "minLength": 1 },
+    "date_verified": { "type": "string", "pattern": "^\\d{4}-\\d{2}-\\d{2}$" },
+    "tags": { "type": "array", "items": { "type": "string" } }
+  }
+}

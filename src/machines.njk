@@ -1,0 +1,15 @@
+---
+layout: base.njk
+title: Machines
+permalink: /machines/
+---
+<h1>Machines</h1>
+<p class="lede">Generated from <code>data/machines.yaml</code>, the only place host and LAN details live. Scrub that file (and this page) before ever making the repo public.</p>
+<table>
+  <thead><tr><th>Id</th><th>Name</th><th>Distro</th><th>Address</th><th>Notes</th></tr></thead>
+  <tbody>
+  {% for m in lgl.machines %}
+    <tr><td><code>{{ m.id }}</code></td><td>{{ m.name }}</td><td>{{ m.distro }}</td><td>{{ m.ip }}</td><td>{{ m.notes | mdInline | safe }}</td></tr>
+  {% endfor %}
+  </tbody>
+</table>

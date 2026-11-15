@@ -1,0 +1,23 @@
+# The ONLY place for host / LAN details (IPs, hostnames, mounts).
+# If this repo ever goes public, scrub this file. Everywhere else, refer to
+# machines by `id` only.
+machines:
+  - id: arch-server
+    name: arch-server
+    ip: 192.168.0.173
+    notes: wine 11.21, winetricks, protontricks; no Heroic, Lutris, or umu
+  - id: skycachy
+    name: skycachy
+    distro: CachyOS
+    ip: 192.168.0.156
+    notes: Heroic installed
+  - id: razer
+    name: Razer Omarchy
+    ip: 192.168.0.104
+  - id: alienware
+    name: alienware
+    ip: 192.168.0.252
+  - id: syn1
+    name: Synology NAS
+    ip: 192.168.0.139
+    notes: "share `/volume1/Games` mounted NFS4 rw at `/mnt/syn1/Games` on arch-server; 5.9T free as of 2026-11-15"

@@ -1,0 +1,25 @@
+---
+layout: base.njk
+title: Tips
+permalink: /tips/
+scripts: ["/js/tips.js"]
+---
+<h1>Tips</h1>
+<form id="tip-filters" class="filters" onsubmit="return false">
+  <label>Search <input type="search" id="f-q" placeholder="text…"></label>
+  <label>Category <select id="f-category"><option value="">all</option>{% for c in lgl.categories %}<option>{{ c }}</option>{% endfor %}</select></label>
+  <label>Game <select id="f-game"><option value="">all</option>{% for g in lgl.games %}<option value="{{ g.slug }}">{{ g.title }}</option>{% endfor %}</select></label>
+  <label>Status <select id="f-status"><option value="">all</option>{% for s in lgl.statuses %}<option>{{ s }}</option>{% endfor %}</select></label>
+</form>
+<p id="tip-count" class="muted"></p>
+<div id="tip-list">
+{% for t in lgl.tips %}
+<article class="card tip" data-category="{{ t.category }}" data-status="{{ t.status }}" data-games="{{ t.games | join(' ') }}" data-text="{{ (t.title + ' ' + t.body) | lower }}">
+  <h3><a href="{{ ('/tips/' + t.id + '/') | url }}">{{ t.title }}</a></h3>
+  <p class="meta"><span class="chip">{{ t.category }}</span> <span class="chip status-{{ t.status }}">{{ t.status }}</span>
+    {% for g in t.games %}<a class="chip" href="{{ ('/games/' + g + '/') | url }}">{{ lgl.gameTitle[g] or g }}</a>{% endfor %}
+    {% for m in t.machines %}<span class="chip">{{ lgl.nameOf[m] or m }}</span>{% endfor %}
+  </p>
+</article>
+{% endfor %}
+</div>
