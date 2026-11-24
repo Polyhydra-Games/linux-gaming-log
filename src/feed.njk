@@ -1,0 +1,17 @@
+---
+permalink: /feed.xml
+eleventyExcludeFromCollections: true
+---
+<?xml version="1.0" encoding="utf-8"?>
+<feed xmlns="http://www.w3.org/2005/Atom">
+  <title>{{ lgl.title }}</title>
+  <id>urn:linux-gaming-log</id>
+  <updated>{{ lgl.log[0].date }}T00:00:00Z</updated>
+{% for e in lgl.log %}  <entry>
+    <title>{{ e.title | escape }}</title>
+    <id>urn:linux-gaming-log:{{ e.slug }}</id>
+    <link href="{{ ('/log/' + e.slug + '/') | url }}"/>
+    <updated>{{ e.date }}T00:00:00Z</updated>
+    <summary>{{ e.what_we_did | list | join('; ') | escape }}</summary>
+  </entry>
+{% endfor %}</feed>

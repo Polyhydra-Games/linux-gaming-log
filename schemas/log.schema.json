@@ -1,0 +1,35 @@
+{
+  "$schema": "http://json-schema.org/draft-07/schema#",
+  "title": "log entry frontmatter",
+  "type": "object",
+  "required": ["date", "title", "machines", "games", "what_we_did", "what_worked", "what_failed"],
+  "additionalProperties": false,
+  "definitions": {
+    "textOrList": {
+      "oneOf": [
+        { "type": "string" },
+        { "type": "array", "items": { "type": "string", "minLength": 1 } }
+      ]
+    },
+    "idList": { "type": "array", "items": { "type": "string", "minLength": 1 }, "uniqueItems": true }
+  },
+  "properties": {
+    "date": { "type": "string", "pattern": "^\\d{4}-\\d{2}-\\d{2}$" },
+    "title": { "type": "string", "minLength": 1 },
+    "machines": { "$ref": "#/definitions/idList" },
+    "games": { "$ref": "#/definitions/idList" },
+    "what_we_did": { "$ref": "#/definitions/textOrList" },
+    "what_worked": { "$ref": "#/definitions/textOrList" },
+    "what_failed": { "$ref": "#/definitions/textOrList" },
+    "links": {
+      "type": "array",
+      "items": {
+        "type": "object",
+        "required": ["title", "url"],
+        "additionalProperties": false,
+        "properties": { "title": { "type": "string" }, "url": { "type": "string", "format": "uri" } }
+      }
+    },
+    "tags": { "type": "array", "items": { "type": "string", "minLength": 1 } }
+  }
+}

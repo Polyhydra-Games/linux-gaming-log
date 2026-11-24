@@ -1,0 +1,14 @@
+---
+layout: base.njk
+title: Home
+---
+<h1>Linux Gaming Log</h1>
+<p class="lede">A work log and tips database for getting games running on Linux. It starts from a GOG library backup effort, but the scope is general Linux gaming: what we did, what worked, what failed.</p>
+
+<h2>Recent log entries</h2>
+{% for e in lgl.log | head(5) %}{% include "logentry.njk" %}{% endfor %}
+<p><a href="{{ '/log/' | url }}">Full timeline →</a></p>
+
+<h2>Tips &amp; games</h2>
+<p><a href="{{ '/tips/' | url }}">{{ lgl.tips | length }} tips</a> you can filter by category, game and status, and
+<a href="{{ '/games/' | url }}">{{ lgl.games | length }} game pages</a> with related tips and log entries.</p>

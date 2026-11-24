@@ -1,0 +1,8 @@
+---
+layout: base.njk
+title: Log
+permalink: /log/
+---
+<h1>Log</h1>
+<p class="lede">All entries, newest first. <a href="{{ '/feed.xml' | url }}">Atom feed</a>.</p>
+{% for e in lgl.log %}{% include "logentry.njk" %}{% endfor %}

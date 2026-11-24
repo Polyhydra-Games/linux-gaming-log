@@ -1,0 +1,17 @@
+# Inventory of machines referenced by id in log, tip, and game entries.
+# Private/LAN IPs are not allowed anywhere in this repo, including here.
+machines:
+  - id: arch-server
+    name: arch-server
+    notes: wine 11.21, winetricks, protontricks; no Heroic, Lutris, or umu
+  - id: skycachy
+    name: skycachy
+    distro: CachyOS
+    notes: Heroic installed
+  - id: razer
+    name: Razer Omarchy
+  - id: alienware
+    name: alienware
+  - id: syn1
+    name: NAS
+    notes: "Games share mounted NFS4 rw at `/mnt/syn1/Games` on arch-server; 5.9T free as of 2026-11-15"

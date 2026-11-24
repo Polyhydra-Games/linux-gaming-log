@@ -1,0 +1,17 @@
+{
+  "$schema": "http://json-schema.org/draft-07/schema#",
+  "title": "game frontmatter",
+  "type": "object",
+  "required": ["slug", "title", "store", "linux_installer_native", "backup_location", "how_it_runs", "rating", "status"],
+  "additionalProperties": false,
+  "properties": {
+    "slug": { "type": "string", "pattern": "^[a-z0-9_]+$" },
+    "title": { "type": "string", "minLength": 1 },
+    "store": { "type": "string", "enum": ["gog"] },
+    "linux_installer_native": { "type": "string", "enum": ["yes", "no"] },
+    "backup_location": { "type": "string", "pattern": "^/" },
+    "how_it_runs": { "type": "string", "minLength": 1 },
+    "rating": { "type": "string" },
+    "status": { "type": "string", "minLength": 1 }
+  }
+}

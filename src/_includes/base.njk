@@ -1,0 +1,40 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>{% if title %}{{ title }} · {% endif %}{{ lgl.title }}</title>
+  <meta name="description" content="{{ description or 'Linux gaming work log and tips database' }}">
+  <link rel="alternate" type="application/atom+xml" title="Log" href="{{ '/feed.xml' | url }}">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=IBM+Plex+Mono&family=Schibsted+Grotesk:wght@400;600;700&family=Source+Sans+3:wght@400;600&display=swap" rel="stylesheet">
+  <script>
+    (function () {
+      var t = localStorage.getItem("lgl-theme");
+      if (t) document.documentElement.dataset.theme = t;
+    })();
+  </script>
+  <link rel="stylesheet" href="{{ '/css/site.css' | url }}">
+</head>
+<body>
+  <header class="site-header">
+    <a class="brand" href="{{ '/' | url }}">{{ lgl.title }}</a>
+    <nav>
+      <a href="{{ '/log/' | url }}">Log</a>
+      <a href="{{ '/tips/' | url }}">Tips</a>
+      <a href="{{ '/games/' | url }}">Games</a>
+      <a href="{{ '/machines/' | url }}">Machines</a>
+      <button id="theme-toggle" type="button" aria-label="Toggle light/dark theme">◐</button>
+    </nav>
+  </header>
+  <main>
+    {{ content | safe }}
+  </main>
+  <footer class="site-footer">
+    <span>Built {{ lgl.builtOn }}. Structured Linux gaming log; see also the public field-notes site <a href="https://github.com/lancer1977/mindblank">mindblank</a>.</span>
+  </footer>
+  <script src="{{ '/js/theme.js' | url }}"></script>
+  {% if scripts %}{% for s in scripts %}<script src="{{ s | url }}"></script>{% endfor %}{% endif %}
+</body>
+</html>

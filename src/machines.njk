@@ -1,0 +1,15 @@
+---
+layout: base.njk
+title: Machines
+permalink: /machines/
+---
+<h1>Machines</h1>
+<p class="lede">Role names used in the log and tips, generated from <code>data/machines.yaml</code>. Private/LAN addresses are not recorded here.</p>
+<table>
+  <thead><tr><th>Id</th><th>Name</th><th>Distro</th><th>Notes</th></tr></thead>
+  <tbody>
+  {% for m in lgl.machines %}
+    <tr><td><code>{{ m.id }}</code></td><td>{{ m.name }}</td><td>{{ m.distro }}</td><td>{{ m.notes | mdInline | safe }}</td></tr>
+  {% endfor %}
+  </tbody>
+</table>

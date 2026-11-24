@@ -1,0 +1,19 @@
+---
+layout: base.njk
+pagination:
+  data: lgl.tips
+  size: 1
+  alias: t
+permalink: "/tips/{{ t.id }}/"
+eleventyComputed:
+  title: "{{ t.title }}"
+---
+<h1>{{ t.title }}</h1>
+<p class="meta"><span class="chip">{{ t.category }}</span> <span class="chip status-{{ t.status }}">{{ t.status }}</span>
+  {% for g in t.games %}<a class="chip" href="{{ ('/games/' + g + '/') | url }}">{{ lgl.gameTitle[g] or g }}</a>{% endfor %}
+  {% for m in t.machines %}<span class="chip">{{ lgl.nameOf[m] or m }}</span>{% endfor %}
+  {% for d in t.distro | list %}<span class="chip">{{ d }}</span>{% endfor %}
+</p>
+{{ t.body | md | safe }}
+<p class="muted">Verified {{ t.date_verified }} · source: {{ t.source }}</p>
+<p><a href="{{ '/tips/' | url }}">← All tips</a></p>
